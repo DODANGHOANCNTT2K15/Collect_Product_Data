@@ -3,7 +3,7 @@ import pyautogui
 import time
 import numpy as np
 
-def is_template_on_screen(template_path, threshold=0.8, max_attempts=10, delay=1):
+def is_template_on_screen(template_path, threshold=0.8, max_attempts=20, delay=1):
     """
     Kiểm tra xem template có xuất hiện trên màn hình hay không.
 

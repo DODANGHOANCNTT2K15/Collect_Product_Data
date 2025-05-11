@@ -28,7 +28,7 @@ def main():
         time.sleep(1)
 
         # Check if the page is loaded
-        if is_template_on_screen("loaded_element1.png", threshold=0.75):
+        if is_template_on_screen("loaded_element2.png", threshold=0.75):
             print("The image has appeared on the screen..")
         else:
             print("No image after multiple checks.")
