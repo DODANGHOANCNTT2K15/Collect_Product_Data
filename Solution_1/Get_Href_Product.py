@@ -1,8 +1,6 @@
 import pandas as pd
 from bs4 import BeautifulSoup
-
-# Đọc file CSV gốc
-df = pd.read_csv('element_data_all_products.csv')  # Thay bằng tên file thực tế
+ # Thay bằng tên file thực tế
 
 # Hàm trích xuất href bằng BeautifulSoup
 def extract_href_with_bs(html):
@@ -12,8 +10,14 @@ def extract_href_with_bs(html):
         return "https://shopee.vn" + a_tag['href']
     return None
 
-# Áp dụng hàm lên cột chứa HTML
-df['Shopee URL'] = df['Element'].apply(extract_href_with_bs)
+if __name__ == "__main__":
+    # Đọc file CSV gốc
+    df = pd.read_csv('element_data_all_products.csv') 
 
-# Lưu ra file CSV mới
-df[['Shopee URL']].to_csv('full_link_product.csv', index=False)
+    # Áp dụng hàm lên cột chứa HTML
+    df['Shopee URL'] = df['Element'].apply(extract_href_with_bs)
+
+    # Lưu ra file CSV mới
+    df[['Shopee URL']].to_csv('full_link_product.csv', index=False)
+
+    print("Extracted href and saved to 'full_link_product.csv'")

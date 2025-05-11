@@ -1,9 +1,0 @@
-Main Picture
-Orther Picture
-Name's Product
-Rate Star
-Sold
-Selling Price
-Original price
-Availible Product
-Description

@@ -1,5 +1,4 @@
 import pandas as pd
-from bs4 import BeautifulSoup
 import csv
 import webbrowser
 import pyautogui
@@ -8,22 +7,20 @@ import csv
 import pyperclip
 import cv2
 
-category_products = []
-
-chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
+from check_temp_on_screen import is_template_on_screen
 
 def match_template(screen_path, template_path, threshold=0.8):
     img = cv2.imread(screen_path)
     template = cv2.imread(template_path)
     if img is None or template is None:
-        raise Exception("Không thể đọc ảnh.")
+        raise Exception("Unable to read image.")
     
     result = cv2.matchTemplate(img, template, cv2.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
 
     attempts = 0
     while max_val < threshold and attempts < 3:
-        print(f"Không tìm thấy template trong ảnh (lần {attempts+1}). Nhấn Enter...")
+        print(f"Template not found in image (time {attempts+1}). Press Enter...")
         pyautogui.press('enter')
         time.sleep(1)
         pyautogui.screenshot(screen_path)
@@ -33,18 +30,12 @@ def match_template(screen_path, template_path, threshold=0.8):
         attempts += 1
 
     if max_val < threshold:
-        print(f"Không tìm thấy template sau 3 lần thử. Chuyển sang danh mục tiếp theo.")
+        print(f"Template not found after 3 tries. Move to next category.")
         return None  # Trả về None khi không tìm thấy sau 3 lần thử
 
     h, w = template.shape[:2]
     center_x, center_y = max_loc[0] + w // 2, max_loc[1] + h // 2
     return center_x, center_y
-
-with open('full_link_product.csv', 'r', encoding='utf-8') as f:
-    reader = csv.reader(f)
-    next(reader)  # bỏ header
-    for row in reader:
-        category_products.append(row[0]) 
 
 def main():
     # Danh sách lưu toàn bộ sản phẩm từ tất cả danh mục
@@ -52,9 +43,14 @@ def main():
 
     # Lặp qua từng danh mục
     for idx, url in enumerate(category_products):
-        print(f"🌐 Truy cập danh mục {idx+1}/{len(category_products)}: {url}")
+        print(f"Access the catalog {idx+1}/{len(category_products)}")
         webbrowser.get(chrome_path).open(url)
-        time.sleep(5)  # chờ trang tải
+        time.sleep(1)
+
+        if is_template_on_screen("loaded_element2.png", threshold=0.75):
+            print("The image has appeared on the screen..")
+        else:
+            print("No image after multiple checks.") 
 
         screen_width, screen_height = pyautogui.size()
         x = screen_width - 50          # Cách mép phải 50px
@@ -83,7 +79,7 @@ def main():
         result = match_template("screen.png", "highlight_template_product_container.png")
         
         if result is None:  # Nếu không tìm thấy template, chuyển sang link khác
-            print(f"🌐 Không tìm thấy sản phẩm {idx+1}, chuyển sang sản phẩm tiếp theo.")
+            print(f"No products found {idx+1}, move to next product.")
             continue  # Chuyển sang danh mục tiếp theo
 
         center_x, center_y = result
@@ -106,9 +102,9 @@ def main():
 
         copied_data = pyperclip.paste()
         all_elements.append([url, copied_data])
-        print(f"✅ Danh mục {idx+1}: Đã sao chép sản phẩm đầu tiên")
+        print(f"Product {idx+1}: Copied first product information")
         
-        pyautogui.hotkey('ctrl', 'w')  # Đóng tab hiện tại
+        pyautogui.hotkey('ctrl', 'w')  
         time.sleep(1)
 
     # Ghi toàn bộ vào file CSV
@@ -117,7 +113,17 @@ def main():
         writer.writerow(["Product URL", "Element"])
         writer.writerows(all_elements)
 
-    print("🎉 Đã lưu toàn bộ vào full_info_detail_product.csv")
+    print("All saved to full_info_detail_product.csv")
 
 if __name__ == "__main__":
+    category_products = []
+
+    chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
+
+    with open('full_link_product.csv', 'r', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        next(reader)  
+        for row in reader:
+            category_products.append(row[0]) 
+
     main()
