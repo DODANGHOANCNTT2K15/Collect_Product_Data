@@ -6,7 +6,7 @@
     - Use BeautifulSoup
     - Finally, output a csv file containing data for at least 300 products.
 
-## Library Request
+### Required Libraries
     - webbrowser
     - pyautogui
     - time
@@ -18,19 +18,39 @@
     - pandas
     - BeautifulSoup
 
-Command to install all: pip install pyautogui opencv-python pyperclip pandas beautifulsoup4
+Command to install all: 
+```bash
+pip install pyautogui opencv-python pyperclip pandas beautifulsoup4
+```
 
-## Note
+## Project Limitations
     - Because shopee blocks data retrieval. So I can't use BeautifulSoup or Selenium to extract html as usual. So I will use pyautogui to automatically control the mouse to manually copy elements from Devtools. This also avoids shopee detecting me as a robot and asking for captcha.
     - Because of using pyautogui, during the program running. Therefore, you will not be able to perform other tasks on your computer. End it will take a lot of time because you have to copy elements manually like that.
 
-## Solution 1 (Very BAD - You should skip to next solution)
-### Performance
+### Solution V1 (Very BAD - You should skip to next solution)
+#### Performance
     - With high nextwork speed
     - Data collection completion time: 02:33:37 (hh:mm:ss)
 
-### Solution V1
-    * What did my program do?
+#### File Structure
+```
+├── Get_URL_Category.py
+├── Get_Href_Category.py
+├── Get_URL_Product.py
+├── Get_Href_Product.py
+├── Get_Info_Detail_Product.py
+├── Extract_Product_Information.py
+├── Run_all.py
+└── README.md
+```
+#### Output Files
+- element_data_category.csv
+- full_link_category.csv
+- full_link_product.csv
+- full_info_detail_product.csv
+- product_info.csv
+
+#### Process Flow
     1. Step 1 - "Get_URL_Category.py"
         - First access "https://www.shopee.vn/""
         - Open Devtools find element have class "home-category-list__category-grid". Detail:
@@ -55,7 +75,7 @@ Command to install all: pip install pyautogui opencv-python pyperclip pandas bea
             + Check web is loaded.
             + Scroll down to bottom to load full page.
             + Then find element and copy like "Get_URL_Category.py".
-        - Save to "full_link_product.csv".
+        - Save to "element_data_all_products.csv".
     4. Step 4 - "Get_Href_Product.py"
         - Use BeautifullSoup to extract url category.
         - Then append it with "https://shopee.vn".
@@ -68,8 +88,8 @@ Command to install all: pip install pyautogui opencv-python pyperclip pandas bea
         - Use BeautifullSoup to extract product data fields.
         - Save to "product_info.csv". 
     
-    * How to run it?
-        - Command to install all: pip install pyautogui opencv-python pyperclip pandas beautifulsoup4
-        - python Run_all.py
+#### How to run it?
+    - Command to install all: pip install pyautogui opencv-python pyperclip pandas beautifulsoup4
+    - python Run_all.py
 
 ## Solution V2 (Better - Improved from V1 )
