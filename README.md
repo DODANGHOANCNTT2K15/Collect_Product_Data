@@ -1,4 +1,6 @@
-# Collect_Product_Data
+# Collect Product Data from Shopee
+![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
 
 ## Purpose
 - The purpose of this repo is to collect at least 300 products from shopee
