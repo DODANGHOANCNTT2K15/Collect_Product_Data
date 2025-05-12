@@ -3,8 +3,6 @@ import pyautogui
 import time
 import csv
 import pyperclip
-import numpy as np
-import cv2
 from check_temp_on_screen import is_template_on_screen  
 from Get_URL_Category import match_template
 

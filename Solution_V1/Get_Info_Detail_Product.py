@@ -5,7 +5,6 @@ import pyautogui
 import time
 import csv
 import pyperclip
-import cv2
 
 from check_temp_on_screen import is_template_on_screen
 from Get_URL_Product import match_template
