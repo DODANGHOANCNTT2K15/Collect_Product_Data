@@ -1,4 +1,4 @@
-# Collect_Poduct_Data
+# Collect_Product_Data
 
 ## Purpose
 - The purpose of this repo is to collect at least 300 products from shopee
@@ -6,7 +6,7 @@
 - Use BeautifulSoup
 - Finally, output a csv file containing data for at least 300 products.
 
-### Required Libraries
+## Required Libraries
     - webbrowser
     - pyautogui
     - time
@@ -27,12 +27,12 @@ pip install pyautogui opencv-python pyperclip pandas beautifulsoup4
 - Because shopee blocks data retrieval. So I can't use BeautifulSoup or Selenium to extract html as usual. So I will use pyautogui to automatically control the mouse to manually copy elements from Devtools. This also avoids shopee detecting me as a robot and asking for captcha.
 - Because of using pyautogui, during the program running. Therefore, you will not be able to perform other tasks on your computer. End it will take a lot of time because you have to copy elements manually like that.
 
-### Solution V1 (Very BAD - You should skip to next solution)
-#### Performance
+## Solution V1 (Very BAD - You should skip to next solution)
+### Performance
 - With high nextwork speed
 - Data collection completion time: 02:33:37 (hh:mm:ss)
 
-#### File Structure
+### File Structure
 ```
 ├── Get_URL_Category.py
 ├── Get_Href_Category.py
@@ -43,14 +43,14 @@ pip install pyautogui opencv-python pyperclip pandas beautifulsoup4
 ├── Run_all.py
 └── README.md
 ```
-#### Output Files
+### Output Files
 - element_data_category.csv
 - full_link_category.csv
 - full_link_product.csv
 - full_info_detail_product.csv
 - product_info.csv
 
-#### Process Flow
+### Process Flow
 1. Step 1 - "Get_URL_Category.py"
     - First access "https://www.shopee.vn/""
     - Open Devtools find element have class "home-category-list__category-grid". Detail:
@@ -88,7 +88,7 @@ pip install pyautogui opencv-python pyperclip pandas beautifulsoup4
     - Use BeautifullSoup to extract product data fields.
     - Save to "product_info.csv". 
     
-#### How to run it?
+### How to run it?
 - Command to install all: 
 ```bash
 pip install pyautogui opencv-python pyperclip pandas beautifulsoup4
