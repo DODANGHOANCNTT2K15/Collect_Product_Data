@@ -14,7 +14,7 @@ def match_template(screen_path, template_path, threshold=0.8):
 
     attempts = 0
     while max_val < threshold and attempts < 3:
-        print(f"Template image not found in image (time {attempts+1}). Press Enter...")
+        print(f"Template image not found in image (time {attempts+1}). Auto Press Enter...")
         pyautogui.press('enter')
         time.sleep(1)
         pyautogui.screenshot(screen_path)
@@ -24,7 +24,7 @@ def match_template(screen_path, template_path, threshold=0.8):
         attempts += 1
 
     if max_val < threshold:
-        raise Exception(f"No matching template found after {attempts} time (max_val={max_val:.2f})")
+        return None, None
 
     h, w = template.shape[:2]
     center_x, center_y = max_loc[0] + w // 2, max_loc[1] + h // 2
