@@ -98,3 +98,31 @@ pip install pyautogui opencv-python pyperclip pandas beautifulsoup4
 - python Run_all.py
 
 ## ✨ Solution V2 (Better - Improved from V1 )
+### ⏱️ Performance
+- With high nextwork speed
+- Data collection completion time: ..:..:.. (hh:mm:ss)
+
+### 📁 File Structure
+```
+├── check_page_load.py
+├── extract_data_products.py
+├── get_link_category.py
+├── get_link_products.py
+├── load_image_element.py
+└── main.py
+```
+### 📁 Output Files
+- full_link_category.csv
+- full_link_product.csv
+- data_product.csv 
+
+### 🔄 Process Flow
+
+    
+### 🚀 How to run it?
+- Command to install all: 
+```bash
+pip install pyautogui opencv-python pyperclip pandas beautifulsoup4
+```
+- python main.py
+
