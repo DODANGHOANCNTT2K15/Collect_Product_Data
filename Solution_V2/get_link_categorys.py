@@ -68,7 +68,3 @@ def extract_category_data():
         for link in category_link_list:
             writer.writerow([link])
     print("Extracted href and saved to file full_link_category.csv")
-
-if __name__ == "__main__":
-    extract_category_data()
-    print("Done extracting category data.")

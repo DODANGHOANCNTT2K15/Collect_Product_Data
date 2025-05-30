@@ -15,7 +15,7 @@ elements = []
 full_link_product = []
 save_element = []
 max_wait_time = 10
-limit_product = 4
+limit_product = 13
 
 
 def get_link_product():
@@ -88,6 +88,8 @@ def get_link_product():
         time.sleep(1)
 
 def extract_link_product():
+    get_link_product()
+    time.sleep(1)
     for element in save_element:
         soup = BeautifulSoup(element, 'html.parser')
         # find all links that have class containing 'content'
@@ -103,9 +105,3 @@ def extract_link_product():
     df = pd.DataFrame(full_link_product, columns=['link'])
     df.to_csv('full_link_product.csv', index=False)
     print("Extracted links saved to full_link_product.csv")
-
-if __name__ == "__main__":
-    get_link_product()
-    time.sleep(1)
-    extract_link_product()
-    print("Done extracting product links.")

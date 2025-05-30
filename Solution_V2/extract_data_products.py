@@ -107,6 +107,8 @@ def get_elements_product():
         pyautogui.hotkey('ctrl', 'w')
 
 def extrack_data_product():
+    get_elements_product()
+    time.sleep(1)
     for idx, html in enumerate(all_elements):
         image = None
         name = None
@@ -153,9 +155,11 @@ def extrack_data_product():
         ## end get rate
 
         ## get solded
-        sold = soup.find('span', class_='AcmPRb').get_text(strip=True)
+        sold = soup.find('span', class_='AcmPRb')
         if not sold:
             sold = 'NULL'
+        else:
+            sold = sold.get_text(strip=True)
         ## end end solded
 
         ## get selling price
@@ -204,9 +208,3 @@ def extrack_data_product():
     #save to csv
     df = pd.DataFrame(data_products, columns=['image', 'name', 'rate_star', 'sold', 'selling_price', 'original_price', 'available_product', 'description'])
     df.to_csv('data_product.csv', index=False)
-
-if __name__ == "__main__":
-    get_elements_product()
-    time.sleep(1)
-    extrack_data_product()
-    print("Product data extraction completed")

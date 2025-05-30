@@ -1,4 +1,3 @@
-import time
 import cv2
 
 # Check if a pattern exists in another pattern
