@@ -82,7 +82,7 @@ pip install pyautogui opencv-python pyperclip pandas beautifulsoup4
 python main.py
 ```
 
-## ✨ Solution V1 (Very BAD - You should skip to next solution)
+## ✨ Solution V1 (Very BAD - This is just a solution in my learning process so it is not optimized yet)
 ### ⏱️ Performance
 - With high nextwork speed
 - Data collection completion time: 02:33:37 (hh:mm:ss)
